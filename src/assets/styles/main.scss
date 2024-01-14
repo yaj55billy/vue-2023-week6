@@ -1,0 +1,18 @@
+@import 'bootstrap/scss/functions';
+@import './variables';
+@import 'bootstrap/scss/bootstrap';
+
+.page,
+.page-admin {
+  padding-top: 72px;
+}
+
+.kv {
+  &__bg {
+    img {
+      width: 100%;
+      height: calc(100vh - 72px);
+      object-fit: cover;
+    }
+  }
+}
