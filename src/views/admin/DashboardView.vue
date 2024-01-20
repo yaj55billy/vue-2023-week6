@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import { SwalHandle } from '@/utils/sweetalert2.js';
 const router = useRouter();
 const { VITE_API_BASE } = import.meta.env;
 const checkSuccess = ref(false);
@@ -20,11 +21,11 @@ const checkAdmin = () => {
       })
       .catch(function (error) {
         checkSuccess.value = false;
-        alert('請重新登入');
+        SwalHandle.showErrorMsg('請重新登入～');
         router.push('/login');
       });
   } else {
-    alert('請重新登入');
+    SwalHandle.showErrorMsg('請重新登入～');
     router.push('/login');
   }
 };
@@ -34,7 +35,7 @@ const signOut = () => {
   axios
     .post(api)
     .then(() => {
-      alert('已登出');
+      SwalHandle.showSuccessMsg('您已登出～');
       router.push('/');
     })
     .catch((error) => {

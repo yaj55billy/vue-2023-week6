@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { SwalHandle } from '@/utils/sweetalert2.js';
 
 const { VITE_API_BASE } = import.meta.env;
 
@@ -21,13 +22,13 @@ const signIn = () => {
   axios
     .post(api, data)
     .then((res) => {
-      alert(res.data.message);
+      SwalHandle.showSuccessMsg(res.data.message);
       const { token, expired } = res.data;
       document.cookie = `hexToken=${token};expired=${new Date(expired)}; path=/`;
       router.push('/admin/products');
     })
     .catch((error) => {
-      console.log(error);
+      SwalHandle.showErrorMsg(`${error.response.data.message}，請再檢查帳密`);
     });
 };
 </script>

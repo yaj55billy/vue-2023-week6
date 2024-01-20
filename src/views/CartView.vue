@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue';
 import axios from 'axios';
 import { useCartStore } from '@/stores/useCartStore.js';
 import { useLoaderStore } from '@/stores/useLoaderStore.js';
+import { SwalHandle } from '@/utils/sweetalert2.js';
 const cartStore = useCartStore();
 const loaderStore = useLoaderStore();
 
@@ -32,7 +33,7 @@ const onSubmit = () => {
   axios
     .post(api, { data })
     .then(() => {
-      alert('訂單建立成功');
+      SwalHandle.showSuccessMsg('訂單建立成功');
       loaderStore.changeIsLoading(false);
       user.value = {
         email: '',
@@ -43,9 +44,9 @@ const onSubmit = () => {
       };
       cartStore.getCart();
     })
-    .catch((error) => {
+    .catch(() => {
+      SwalHandle.showErrorMsg('訂單建立失敗，請稍候再試');
       loaderStore.changeIsLoading(false);
-      console.log(error);
     });
 };
 

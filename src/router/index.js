@@ -1,4 +1,14 @@
 import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router';
+import FrontView from '../views/FrontView.vue';
+import HomeView from '../views/HomeView.vue';
+import ProductsView from '../views/ProductsView.vue';
+import ProductView from '../views/ProductView.vue';
+import CartView from '../views/CartView.vue';
+import LoginView from '../views/LoginView.vue';
+import DashboardView from '../views/admin/DashboardView.vue';
+import adminProductsView from '../views/admin/ProductsView.vue';
+import adminCouponsView from '../views/admin/CouponsView.vue';
+import NotFoundView from '../views/NotFoundView.vue';
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -6,55 +16,53 @@ const router = createRouter({
     {
       path: '/',
       name: 'Front',
-      component: () => import('../views/FrontView.vue'),
-      // component: () => {
-      //   return import('../views/FrontView.vue');
-      // },
+      component: FrontView,
       children: [
         {
           path: '',
           name: 'home',
-          component: () => import('../views/HomeView.vue'),
+          component: HomeView,
         },
         {
           path: 'products',
           name: 'products',
-          component: () => import('../views/ProductsView.vue'),
+          component: ProductsView,
         },
         {
           path: 'product/:id',
           name: 'product',
-          component: () => import('../views/ProductView.vue'),
+          component: ProductView,
         },
         {
           path: 'cart',
           name: 'cart',
-          component: () => import('../views/CartView.vue'),
+          component: CartView,
         },
       ],
     },
     {
       path: '/login',
       name: 'login',
-      component: () => import('../views/LoginView.vue'),
+      component: LoginView,
     },
     {
       path: '/admin',
       name: 'admin',
-      component: () => import('../views/admin/DashboardView.vue'),
+      component: DashboardView,
       children: [
         {
           path: 'products',
           name: 'adminProducts',
-          component: () => import('../views/admin/ProductsView.vue'),
+          component: adminProductsView,
         },
         {
           path: 'coupons',
           name: 'adminCoupons',
-          component: () => import('../views/admin/CouponsView.vue'),
+          component: adminCouponsView,
         },
       ],
     },
+    { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFoundView },
   ],
 });
 

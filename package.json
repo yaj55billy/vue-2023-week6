@@ -18,6 +18,7 @@
     "gh-pages": "^6.1.1",
     "pinia": "^2.1.7",
     "sass": "^1.69.5",
+    "sweetalert2": "^11.10.3",
     "vee-validate": "^4.12.4",
     "vue": "^3.3.4",
     "vue-loading-overlay": "^6.0.3",
