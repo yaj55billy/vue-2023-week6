@@ -1,1 +1,0 @@
-import{_ as e,a as s,c as t,e as c}from"./index-df55983b.js";const o={},_={class:"mt-4"},n=c("h2",null,"後台產品列表",-1),a=[n];function r(d,i){return s(),t("div",_,a)}const f=e(o,[["render",r]]);export{f as default};
